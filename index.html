@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Form Verification</title>
+</head>
+
+<body>
+    <div class="pre-loader">
+        <img src="./images/DevFest_Sticker_BracketGuys_v03.gif" alt="">
+    </div>
+    <div class="container">
+        <!-- <div id="timeCountDown">
+            <h3>Registration is start from 1st November</h3>
+            <div class="time-boxes">
+                <div class="box">
+                    <span class="days"></span>
+                    <span class="time_map">Day</span>
+                </div>
+                <div class="box">
+                    <span class="hours"></span>
+                    <span class="time_map">Hrs</span>
+                </div>
+                <div class="box">
+                    <span class="min"></span>
+                    <span class="time_map">Min</span>
+                </div>
+                <div class="box">
+                    <span class="sec"></span>
+                    <span class="time_map">Sec</span>
+                </div>
+            </div>
+        </div> -->
+        <div class="login-box" time_out="129399324">
+            <img src="images/DevFest_Sticker_Hashtag_White_v01.gif" alt="" width="100%">
+            <h2>Join With Us</h2>
+            <form autocomplete="off" name="google-sheet">
+                <div class="user-box">
+                    <input type="text" name="name" required>
+                    <label>Full Name</label>
+                </div>
+                <div class="user-box">
+                    <input type="email" name="email" required>
+                    <label>Email Id</label>
+                </div>
+                <div class="user-box">
+                    <input type="number" name="phone" required>
+                    <label>Phone Number</label>
+                </div>
+                <div class="user-box">
+                    <select name="gender" id="gender" required>
+                        <option selected></option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Others">Others</option>
+                    </select>
+                    <label>Gender</label>
+                </div>
+                <div class="user-box">
+                    <input type="text" name="city" required>
+                    <label>City</label>
+                </div>
+                <div class="user-box">
+                    <input type="text" name="linkedin_link" required>
+                    <label>Linkedin Profile</label>
+                </div>
+                <div class="user-box">
+                    <textarea name="reason" id="reason_" required></textarea>
+                    <label>Why do you want to attand Devfest Durgapur 2022 ?</label>
+                </div>
+                <div class="user-op">
+                    <div>
+                        <input type="radio" name="whoareyou" value="Student" id="op1" required> <label
+                            for="op1">Students</label>
+                    </div>
+                    <div>
+
+                        <input type="radio" name="whoareyou" id="op2" value="Professional" required> <label
+                            for="op2">Professional</label>
+                    </div>
+                </div>
+                <div class="students_resume">
+                    ̣<div class="user-box">
+                        <input type="text" name="course" id="course" />
+                        <label>Course</label>
+                    </div>
+                    <div class="user-box">
+                        <input type="text" name="college" id="college" />
+                        <label>College</label>
+                    </div>
+                </div>
+                <div class="professional_resume">
+                    ̣<div class="user-box">
+                        <input type="text" name="company" id="company" />
+                        <label>Company</label>
+                    </div>
+                    <div class="user-box">
+                        <input type="text" name="job_profile" id="job_profile" />
+                        <label>Job Profile</label>
+                    </div>
+                </div>
+                <div class="user-box">
+                    <select name="food_pref" id="food_pref_" required>
+                        <option selected></option>
+                        <option value="Veg">Veg</option>
+                        <option value="Non-Veg">Non-Veg</option>
+                    </select>
+                    <label>Food Preference</label>
+                </div>
+                <div class="user-box">
+                    <input type="text" name="reference" id="reference_" required>
+                    <label>Reference</label>
+                </div>
+                <button type="submit">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
+    <script>
+        const scriptURL =
+            'https://script.google.com/macros/s/AKfycbzWkpYMpZl_G__WZHQOyVXeg8xU61XJwnvUXdrtlRwNROrjtyEFqUY5C3xfjy3uCeMnLw/exec'
+        const form = document.forms['google-sheet']
+        let company_input = document.getElementById('company'),
+            job_profile_input = document.getElementById('job_profile');
+        let course_input = document.getElementById('course'),
+            college_input = document.getElementById('college');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            let op1 = document.getElementById("op1"),
+                op2 = document.getElementById("op2");
+            if (op1.checked == true) {
+
+                if (course_input.value === '') {
+                    course_input.required = true;
+                    return;
+                } else if (college_input.value === '') {
+                    college_input.required = true;
+                    return;
+                } else {
+                    fetch(scriptURL, {
+                        method: 'POST',
+                        body: new FormData(form)
+                    })
+                        .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
+                        .catch(error => console.error('Error!', error.message))
+                }
+            }
+
+            if (op2.checked == true) {
+
+                if (company_input.value === '') {
+                    company_input.required = true;
+                    return;
+                } else if (job_profile_input.value === '') {
+                    job_profile_input.required = true;
+                    return;
+                } else {
+                    fetch(scriptURL, {
+                        method: 'POST',
+                        body: new FormData(form)
+                    })
+                        .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
+                        .catch(error => console.error('Error!', error.message))
+                }
+            }
+            college_input.required = course_input.required = job_profile_input.required = company_input.required = false;
+        });
+    </script>
+
+    <script src="./jQuery.2.1.min.js"></script>
+    <script src="./script.js"></script>
+</body>
+
+</html>
